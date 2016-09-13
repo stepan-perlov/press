@@ -1,0 +1,160 @@
+classByTag = require("../class_by_tag.coffee")
+Element = require("../base/element.coffee")
+ResizableElement = require("../base/resizable_element.coffee")
+config = require("../config.coffee")
+attributesToString = require("../_/attributes_to_string.coffee")
+
+
+class Video extends ResizableElement
+
+    classByTag.associate(@, ["iframe", "video"])
+
+    # An editable video (e.g <video><source src="..." type="..."></video>).
+    # The `Video` element supports 2 special tags to allow the the size of the
+    # image to be constrained (data-ce-min-width, data-ce-max-width).
+    #
+    # NOTE: YouTube and Vimeo provide support for embedding videos using the
+    # <iframe> tag. For this reason we support both video and iframe tags.
+    #
+    # `sources` should be specified or set against the element as a list of
+    # dictionaries containing `src` and `type` key values.
+
+    constructor: (@root, tagName, attributes, sources=[]) ->
+        super(@root, tagName, attributes)
+
+        # List of sources for <video> elements
+        @sources = sources
+
+        # Set the aspect ratio for the image based on it's initial width/height
+        size = @size()
+        @_aspectRatio = size[1] / size[0]
+
+    # Read-only properties
+
+    type: () ->
+        # Return the type of element (this should be the same as the class name)
+        return 'Video'
+
+    _title: () ->
+        # Return a title (based on the source) for the video. This is intended
+        # for internal use only.
+        src = ''
+        if @attr('src')
+            src = @attr('src')
+        else
+            if @sources.length
+                src = @sources[0]['src']
+        if not src
+            src = 'No video source set'
+
+        # Limit the length to something sensible
+        if src.length > 80
+            src = src.substr(0, 80) + '...'
+
+        return src
+
+    # Methods
+
+    createDraggingDOMElement: () ->
+        # Create a DOM element that visually aids the user in dragging the
+        # element to a new location in the editiable tree structure.
+        unless @isMounted()
+            return
+
+        helper = super()
+        helper.innerHTML = @_title()
+        return helper
+
+    html: (indent='') ->
+        # Return a HTML string for the node
+        if @tagName() == 'video'
+            sourceStrings = []
+            for source in @sources
+                attributes = attributesToString(source)
+                sourceStrings.push(
+                    "#{ indent }#{ config.INDENT }<source #{ attributes }>"
+                    )
+            return "#{ indent }<video#{ @_attributesToString() }>\n" +
+                sourceStrings.join('\n') +
+                "\n#{ indent }</video>"
+        else
+            return "#{ indent }<#{ @_tagName }#{ @_attributesToString() }>" +
+                "</#{ @_tagName }>"
+
+    mount: () ->
+        # Mount the element on to the DOM
+
+        # Create the DOM element to mount
+        @_domElement = document.createElement('div')
+
+        # Set the classes for the image, we use the wrapping <a> tag's class if
+        # it exists, else we use the class applied to the image.
+        if @a and @a['class']
+            @_domElement.setAttribute('class', @a['class'])
+
+        else if @_attributes['class']
+            @_domElement.setAttribute('class', @_attributes['class'])
+
+        # Set the background image for the
+        style = if @_attributes['style'] then @_attributes['style'] else ''
+
+        # Set the size using style
+        if @_attributes['width']
+            style += "width:#{ @_attributes['width'] }px;"
+
+        if @_attributes['height']
+            style += "height:#{ @_attributes['height'] }px;"
+
+        @_domElement.setAttribute('style', style)
+
+        # Set the title of the element (for mouse over)
+        @_domElement.setAttribute('data-ce-title', @_title())
+
+        super()
+
+    unmount: () ->
+        # Unmount the element from the DOM
+
+        if @isFixed()
+            # Revert the DOM element to an image
+            wrapper = document.createElement('div')
+            wrapper.innerHTML = @html()
+            domElement = wrapper.querySelector('iframe')
+
+            # Replace the current DOM element with the image
+            @_domElement.parentNode.replaceChild(domElement, @_domElement)
+            @_domElement = domElement
+
+        super()
+
+    # Class properties
+
+    @droppers:
+        'Image': Element._dropBoth
+        'PreText': Element._dropBoth
+        'Static': Element._dropBoth
+        'Text': Element._dropBoth
+        'Video': Element._dropBoth
+
+    # List of allowed drop placements for the class, supported values are:
+    @placements: ['above', 'below', 'left', 'right', 'center']
+
+    # Class methods
+
+    @fromDOMElement: (root, domElement) ->
+        # Convert an element (DOM) to an element of this type
+
+        # Check for source elements
+        childNodes = (c for c in domElement.childNodes)
+        sources = []
+        for childNode in childNodes
+            if childNode.nodeType == 1 \
+                    and childNode.tagName.toLowerCase() == 'source'
+                sources.push(@getDOMElementAttributes(childNode))
+
+        return new @(
+            root,
+            domElement.tagName,
+            @getDOMElementAttributes(domElement),
+            sources
+            )

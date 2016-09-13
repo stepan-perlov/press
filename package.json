@@ -1,0 +1,34 @@
+{
+  "name": "ContentEdit",
+  "description": "A JavaScript library that provides a set of classes for building content-editable HTML elements.",
+  "version": "1.1.10",
+  "keywords": [
+    "wysiwyg",
+    "inline",
+    "html",
+    "editor"
+  ],
+  "author": {
+    "name": "Stepan Perlov",
+    "email": "stepanperlov@gmail.com",
+    "url": "https://github.com/stepan-perlov"
+  },
+  "main": "build/press-dom.js",
+  "devDependencies": {
+    "coffee-loader": "^0.7.2",
+    "coffee-script": "^1.10.0",
+    "css-loader": "^0.25.0",
+    "imports-loader": "^0.6.5",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.2",
+    "yargs": "^5.0.0"
+  },
+  "scripts": {
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stepan-perlov/dom-press.git"
+  },
+  "license": "MIT"
+}
