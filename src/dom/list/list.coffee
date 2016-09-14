@@ -1,3 +1,5 @@
+HtmlString = require("../../html_string/html_string.coffee")
+HtmlSelection = require("../../html_selection/html_selection.coffee")
 classByTag = require("../class_by_tag.coffee")
 Element = require("../base/element.coffee")
 ElementCollection = require("../base/element_collection.coffee")
@@ -214,7 +216,7 @@ class moduleClasses.ListItem extends ElementCollection
             # performing the indent.
             selection = null
             if @listItemText().isFocused()
-                selection = ContentSelect.Range.query(
+                selection = HtmlSelection.query(
                     @listItemText().domElement()
                     )
 
@@ -342,7 +344,7 @@ class moduleClasses.ListItem extends ElementCollection
                 else
                     content += childNode.outerHTML
             else
-                content += HTMLString.String.encode(childNode.textContent)
+                content += HtmlString.encode(childNode.textContent)
 
         content = content.replace(/^\s+|\s+$/g, '')
 
@@ -498,8 +500,8 @@ class ListItemText extends Text
             return
 
         # Split the element at the text caret
-        ContentSelect.Range.query(@_domElement)
-        selection = ContentSelect.Range.query(@_domElement)
+        HtmlSelection.query(@_domElement)
+        selection = HtmlSelection.query(@_domElement)
         tip = @content.substring(0, selection.get()[0])
         tail = @content.substring(selection.get()[1])
 
@@ -535,10 +537,10 @@ class ListItemText extends Text
         # Move the focus and text caret based on the split
         if tip.length()
             listItem.listItemText().focus()
-            selection = new ContentSelect.Range(0, 0)
+            selection = new HtmlSelection(0, 0)
             selection.select(listItem.listItemText().domElement())
         else
-            selection = new ContentSelect.Range(0, tip.length())
+            selection = new HtmlSelection(0, tip.length())
             selection.select(@_domElement)
 
         @taint()
@@ -662,7 +664,7 @@ class ListItemText extends Text
 
             # Focus the target and set the text caret position
             target.focus()
-            new ContentSelect.Range(offset, offset).select(target._domElement)
+            new HtmlSelection(offset, offset).select(target._domElement)
 
             # Text > ListItemText - just remove the existing text element
             if element.type() == 'Text'

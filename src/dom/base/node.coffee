@@ -194,6 +194,7 @@ class Node
             node = node.next()
             if node and testFunc(node)
                 return node
+        return null
 
     previous: ->
         # Return the previous element in the tree

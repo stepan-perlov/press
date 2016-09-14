@@ -1,3 +1,4 @@
+HtmlTag = require("../../html_string/html_tag.coffee")
 Element = require("../base/element.coffee")
 classByTag = require("../class_by_tag.coffee")
 config = require("../config.coffee")
@@ -67,7 +68,7 @@ class Static extends Element
         # Return a HTML string for the node
 
         # Check if element is a self closing tag
-        if HTMLString.Tag.SELF_CLOSING[@_tagName]
+        if HtmlTag.SELF_CLOSING[@_tagName]
             return "#{ indent }<#{ @_tagName }#{ @_attributesToString() }>"
 
         return "#{ indent }<#{ @_tagName }#{ @_attributesToString() }>" +

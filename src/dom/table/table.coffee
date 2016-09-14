@@ -1,3 +1,4 @@
+HtmlSelection = require("../../html_selection/html_selection.coffee")
 classByTag = require("../class_by_tag.coffee")
 Element = require("../base/element.coffee")
 ElementCollection = require("../base/element_collection.coffee")
@@ -474,7 +475,7 @@ class moduleClasses.TableCellText extends Text
     # Key handlers
 
     _keyBack: (ev) ->
-        selection = ContentSelect.Range.query(@_domElement)
+        selection = HtmlSelection.query(@_domElement)
         unless selection.get()[0] == 0 and selection.isCollapsed()
             return
 
@@ -495,7 +496,7 @@ class moduleClasses.TableCellText extends Text
             previous = @previousContent()
             if previous
                 previous.focus()
-                selection = new ContentSelect.Range(
+                selection = new HtmlSelection(
                     previous.content.length(),
                     previous.content.length()
                     )
@@ -521,13 +522,13 @@ class moduleClasses.TableCellText extends Text
 
         if nextElement
             nextElement.focus()
-            selection = new ContentSelect.Range(0, 0)
+            selection = new HtmlSelection(0, 0)
             selection.select(nextElement.domElement())
 
         row.parent().detach(row)
 
     _keyDown: (ev) ->
-        selection = ContentSelect.Range.query(@_domElement)
+        selection = HtmlSelection.query(@_domElement)
         unless @_atEnd(selection) and selection.isCollapsed()
             return
 
@@ -612,7 +613,7 @@ class moduleClasses.TableCellText extends Text
                 @nextContent().focus()
 
     _keyUp: (ev) ->
-        selection = ContentSelect.Range.query(@_domElement)
+        selection = HtmlSelection.query(@_domElement)
         unless selection.get()[0] == 0 and selection.isCollapsed()
             return
 

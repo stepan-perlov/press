@@ -1,9 +1,8 @@
 argv = require('yargs').argv
 webpack = require("webpack")
-configureDom = require("./configure_dom.coffee")
-configureEditor = require("./configure_editor.coffee")
+configureTest = require("./configure_test.coffee")
 
-compiler = webpack(configureDom())
+compiler = webpack(configureTest())
 compiler.watch {}, (err, stats)->
     console.log stats.toString(
         colors: true

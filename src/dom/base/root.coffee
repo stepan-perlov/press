@@ -1,3 +1,4 @@
+HtmlSelection = require("../../html_selection/html_selection.coffee")
 Node = require("./node.coffee")
 config = require("../config.coffee")
 addCssClass = require("../_/add_css_class.coffee")
@@ -127,7 +128,7 @@ class Root extends Node
 
     _onDrag: (ev) =>
         # Prevent content selection while dragging elements
-        ContentSelect.Range.unselectAll()
+        HtmlSelection.unselectAll()
 
         # Position the drag helper at the mouse cursor
         @_draggingDOMElement.style.left = "#{ ev.pageX }px"
@@ -206,7 +207,7 @@ class Root extends Node
 
     _onResize: (ev) =>
         # Prevent content selection while resizing elements
-        ContentSelect.Range.unselectAll()
+        HtmlSelection.unselectAll()
 
         # Calculate the 'x' size change that needs to be applied
         x = @_resizingInit.origin[0] - ev.clientX

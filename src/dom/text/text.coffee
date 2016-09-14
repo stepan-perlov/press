@@ -1,3 +1,5 @@
+HtmlString = require("../../html_string/html_string.coffee")
+HtmlSelection = require("../../html_selection/html_selection.coffee")
 Element = require("../base/element.coffee")
 classByTag = require("../class_by_tag.coffee")
 config = require("../config.coffee")
@@ -23,13 +25,13 @@ class Text extends Element
         super(@root, tagName, attributes)
 
         # The content of the text element
-        if content instanceof HTMLString.String
+        if content instanceof HtmlString
             @content = content
         else
             # Strings are trimmed initially to prevent selection issues with
             # whitespaces inside of starting or ending tags
             # (e.g starting <p><a> abc</a>, or ending <a>abc </a></p>).
-            @content = new HTMLString.String(content).trim()
+            @content = new HtmlString(content).trim()
 
     # Read-only properties
     type: ->
@@ -77,7 +79,7 @@ class Text extends Element
 
         # Use the body of the node to create the helper but limit the text to
         # something sensible.
-        text = HTMLString.String.encode(@_domElement.textContent)
+        text = HtmlString.encode(@_domElement.textContent)
         if text.length > config.HELPER_CHAR_LIMIT
             text = text.substr(0, config.HELPER_CHAR_LIMIT)
 
@@ -168,9 +170,9 @@ class Text extends Element
         # Get/Set the content selection for the element
         if selection is undefined
             if @isMounted()
-                return ContentSelect.Range.query(@_domElement)
+                return HtmlSelection.query(@_domElement)
             else
-                return new ContentSelect.Range(0, 0)
+                return new HtmlSelection(0, 0)
 
         selection.select(@_domElement)
 
@@ -180,7 +182,7 @@ class Text extends Element
         unless @isMounted() and @isFocused()
             return
 
-        @_savedSelection = ContentSelect.Range.query(@_domElement)
+        @_savedSelection = HtmlSelection.query(@_domElement)
 
     unmount: ->
         # Unmount the element on from the DOM
@@ -193,7 +195,7 @@ class Text extends Element
     updateInnerHTML: ->
         # Update the inner HTML of the DOM element with the elements content
         @_domElement.innerHTML = @content.html()
-        ContentSelect.Range.prepareElement(@_domElement)
+        HtmlSelection.prepareElement(@_domElement)
         @_flagIfEmpty()
 
     # Event handlers
@@ -242,7 +244,7 @@ class Text extends Element
             ev.preventDefault()
             if document.activeElement != this._domElement
                 this._domElement.focus()
-            new ContentSelect.Range(0, 0).select(this._domElement)
+            new HtmlSelection(0, 0).select(this._domElement)
 
     _onMouseMove: (ev)->
         # If we're waiting to see if the user wants to drag the element, stop
@@ -271,7 +273,7 @@ class Text extends Element
     # Key handlers
 
     _keyBack: (ev)->
-        selection = ContentSelect.Range.query(@_domElement)
+        selection = HtmlSelection.query(@_domElement)
         unless selection.get()[0] == 0 and selection.isCollapsed()
             return
 
@@ -289,7 +291,7 @@ class Text extends Element
             previous.merge(this)
 
     _keyDelete: (ev)->
-        selection = ContentSelect.Range.query(@_domElement)
+        selection = HtmlSelection.query(@_domElement)
         unless @_atEnd(selection)and selection.isCollapsed()
             return
 
@@ -305,7 +307,7 @@ class Text extends Element
         @_keyRight(ev)
 
     _keyLeft: (ev)->
-        selection = ContentSelect.Range.query(@_domElement)
+        selection = HtmlSelection.query(@_domElement)
         unless selection.get()[0] == 0 and selection.isCollapsed()
             return
 
@@ -317,7 +319,7 @@ class Text extends Element
         previous = @previousContent()
         if previous
             previous.focus()
-            selection = new ContentSelect.Range(
+            selection = new HtmlSelection(
                 previous.content.length(),
                 previous.content.length()
                 )
@@ -341,7 +343,7 @@ class Text extends Element
             return
 
         # Split the element at the text caret
-        selection = ContentSelect.Range.query(@_domElement)
+        selection = HtmlSelection.query(@_domElement)
         tip = @content.substring(0, selection.get()[0])
         tail = @content.substring(selection.get()[1])
 
@@ -366,14 +368,14 @@ class Text extends Element
             # Rejoin the content with a line-break
             @content = @content.insert(
                 insertAt,
-                new HTMLString.String(lineBreakStr, true),
+                new HtmlString(lineBreakStr, true),
                 true
                 )
             @updateInnerHTML()
 
             # Reset the caret's position
             insertAt += 1
-            selection = new ContentSelect.Range(insertAt, insertAt)
+            selection = new HtmlSelection(insertAt, insertAt)
             selection.select(@domElement())
 
             @taint()
@@ -395,16 +397,16 @@ class Text extends Element
         # Move the focus and text caret based on the split
         if tip.length()
             element.focus()
-            selection = new ContentSelect.Range(0, 0)
+            selection = new HtmlSelection(0, 0)
             selection.select(element.domElement())
         else
-            selection = new ContentSelect.Range(0, tip.length())
+            selection = new HtmlSelection(0, tip.length())
             selection.select(@_domElement)
 
         @taint()
 
     _keyRight: (ev)->
-        selection = ContentSelect.Range.query(@_domElement)
+        selection = HtmlSelection.query(@_domElement)
         unless @_atEnd(selection) and selection.isCollapsed()
             return
 
@@ -416,7 +418,7 @@ class Text extends Element
         next = @nextContent()
         if next
             next.focus()
-            selection = new ContentSelect.Range(0, 0)
+            selection = new HtmlSelection(0, 0)
             selection.select(next.domElement())
         else
             # If no element was found this must be the last content node found
@@ -470,7 +472,7 @@ class Text extends Element
         # Keep the content in sync with the HTML and check if it's been modified
         # by the key events.
         snapshot = @content.html()
-        @content = new HTMLString.String(
+        @content = new HtmlString(
             @_domElement.innerHTML,
             @content.preserveWhitespace()
         )
@@ -506,7 +508,7 @@ class Text extends Element
 
             # Focus the target and set the text caret position
             target.focus()
-            new ContentSelect.Range(offset, offset).select(target._domElement)
+            new HtmlSelection(offset, offset).select(target._domElement)
 
             # Remove the element
             if element.parent()

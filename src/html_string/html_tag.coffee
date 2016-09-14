@@ -1,10 +1,10 @@
-class HTMLString.Tag
+class HtmlTag
 
     # A HTML tag
 
     constructor: (name, attributes) ->
         @_name = name.toLowerCase()
-        @_selfClosing = HTMLString.Tag.SELF_CLOSING[@_name] == true
+        @_selfClosing = HtmlTag.SELF_CLOSING[@_name] == true
         @_head = null
 
         # Copy the attributes
@@ -86,4 +86,6 @@ class HTMLString.Tag
 
     copy: () ->
         # Return a copy of the tag
-        return new HTMLString.Tag(@_name, @_attributes)
+        return new HtmlTag(@_name, @_attributes)
+
+module.exports= HtmlTag

@@ -1,5 +1,5 @@
 
-class FSM
+class FiniteStateMachine
 
     # A finite state machine.
     #
@@ -84,4 +84,4 @@ class FSM
         # Transition to the next state
         @_currentState = result[0]
 
-module.exports = FSM
+module.exports = FiniteStateMachine

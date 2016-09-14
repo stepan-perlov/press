@@ -1,6 +1,5 @@
-ContentSelect = {}
 
-class ContentSelect.Range
+class HtmlSelection
 
     # A range representing a content selection on the page
 
@@ -35,7 +34,7 @@ class ContentSelect.Range
         # Select the range of content within the specified node
 
         # Clear any existing selections
-        ContentSelect.Range.unselectAll()
+        HtmlSelection.unselectAll()
 
         docRange = document.createRange()
 
@@ -91,7 +90,7 @@ class ContentSelect.Range
     @query: (element) ->
         # Return a range for the content selected within the specified element
 
-        range = new ContentSelect.Range(0, 0)
+        range = new HtmlSelection(0, 0)
 
         # Get the first selection
         try
@@ -279,7 +278,7 @@ _getOffsetOfChildNode = (parentNode, childNode) ->
 _getNodeRange = (element, docRange) ->
     # Return the start/end nodes and relative offsets for the specified document
     # range. This function accepts a document range (e.g Document.createRange),
-    # not a ContentSelect.Range.
+    # not a HtmlSelection.
     childNodes = element.childNodes
 
     # Clone the document range so we can modify it without affecting the current
@@ -365,13 +364,4 @@ _getNodeRange = (element, docRange) ->
 
     return [startNode, startOffset, endNode, endOffset]
 
-
-# Export the namespace
-
-# Browser (via window)
-if typeof window != 'undefined'
-    window.ContentSelect = ContentSelect
-
-# Node/Browserify
-if typeof module != 'undefined' and module.exports
-    exports = module.exports = ContentSelect
+module.exports = HtmlSelection

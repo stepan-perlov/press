@@ -1,3 +1,5 @@
+HtmlString = require("../../html_string/html_string.coffee")
+HtmlSelection = require("../../html_selection/html_selection.coffee")
 Element = require("../base/element.coffee")
 Text = require("./text.coffee")
 classByTag = require("../class_by_tag.coffee")
@@ -10,10 +12,10 @@ class PreText extends Text
 
     constructor: (@root, tagName, attributes, content) ->
         # The content of the text element
-        if content instanceof HTMLString.String
+        if content instanceof HtmlString
             @content = content
         else
-            @content = new HTMLString.String(content, true)
+            @content = new HtmlString(content, true)
 
         Element.call(@, @root, tagName, attributes)
 
@@ -53,7 +55,7 @@ class PreText extends Text
         html = @content.html()
         @_domElement.innerHTML = html
         @_ensureEndZWS()
-        ContentSelect.Range.prepareElement(@_domElement)
+        HtmlSelection.prepareElement(@_domElement)
         @_flagIfEmpty()
 
     # Event handlers
@@ -61,7 +63,7 @@ class PreText extends Text
     _keyBack: (ev) ->
 
         # If the selection is within the known content behave as normal...
-        selection = ContentSelect.Range.query(@_domElement)
+        selection = HtmlSelection.query(@_domElement)
         if selection.get()[0] <= @content.length()
             return super(ev)
 
@@ -76,25 +78,25 @@ class PreText extends Text
         ev.preventDefault()
 
         # Insert a `\n` character at the current position
-        selection = ContentSelect.Range.query(@_domElement)
+        selection = HtmlSelection.query(@_domElement)
         cursor = selection.get()[0] + 1
 
         # Depending on the selection determine how best to insert the content
         if selection.get()[0] == 0 and selection.isCollapsed()
-            @content = new HTMLString.String('\n', true).concat(@content)
+            @content = new HtmlString('\n', true).concat(@content)
 
         else if @_atEnd(selection) and selection.isCollapsed()
-            @content = @content.concat(new HTMLString.String('\n', true))
+            @content = @content.concat(new HtmlString('\n', true))
 
         else if selection.get()[0] == 0 and
                     selection.get()[1] == @content.length()
-            @content = new HTMLString.String('\n', true)
+            @content = new HtmlString('\n', true)
             cursor = 0
 
         else
             tip = @content.substring(0, selection.get()[0])
             tail = @content.substring(selection.get()[1])
-            @content = tip.concat(new HTMLString.String('\n', true), tail)
+            @content = tip.concat(new HtmlString('\n', true), tail)
 
         @updateInnerHTML()
 
@@ -112,7 +114,7 @@ class PreText extends Text
         # Keep the content in sync with the HTML and check if it's been modified
         # by the key events.
         snapshot = @content.html()
-        @content = new HTMLString.String(
+        @content = new HtmlString(
             @_domElement.innerHTML.replace(/\u200B$/g, ''),
             @content.preserveWhitespace()
         )

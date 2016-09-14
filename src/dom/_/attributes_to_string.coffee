@@ -1,3 +1,5 @@
+HtmlString = require("../../html_string/html_string.coffee")
+
 module.exports = (attributes) ->
     # Convert a dictionary of attributes into a string (e.g key="value")
     unless attributes
@@ -15,7 +17,7 @@ module.exports = (attributes) ->
             attributeStrings.push(name)
         else
             # Escape the contents of the attribute
-            value = HTMLString.String.encode(value)
+            value = HtmlString.encode(value)
 
             # We also need to escape quotes (") as the value will
             # sit within quotes.

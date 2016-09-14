@@ -1,4 +1,9 @@
-class HTMLString.String
+FiniteStateMachine = require("../finite_state_machine/finite_state_machine.coffee")
+HtmlCharacter = require("./html_character.coffee")
+HtmlTag = require("./html_tag.coffee")
+
+
+class HtmlString
 
     # A string of HTML
 
@@ -9,11 +14,11 @@ class HTMLString.String
 
         if html
             # For performance we only initialize the parser once and only the
-            # first time a HTMLString instances is initialized with html.
-            if HTMLString.String._parser is null
-                HTMLString.String._parser = new _Parser()
+            # first time a HtmlString instances is initialized with html.
+            if HtmlString._parser is null
+                HtmlString._parser = new _Parser()
 
-            @characters = HTMLString.String._parser.parse(
+            @characters = HtmlString._parser.parse(
                 html,
                 @_preserveWhitespace
                 ).characters
@@ -75,7 +80,7 @@ class HTMLString.String
             # string.
             tail = string
             if typeof string == 'string'
-                tail = new HTMLString.String(string, @_preserveWhitespace)
+                tail = new HtmlString(string, @_preserveWhitespace)
 
             # Inherit the format of the existing string
             if inheritFormat and newString.length()
@@ -252,7 +257,7 @@ class HTMLString.String
         # string.
         middle = substring
         if typeof substring == 'string'
-            middle = new HTMLString.String(substring, @_preserveWhitespace)
+            middle = new HtmlString(substring, @_preserveWhitespace)
 
         # Inherit the format of the existing string
         if inheritFormat and index > 0
@@ -406,7 +411,7 @@ class HTMLString.String
 
     slice: (from, to) ->
         # Extract a section of the string and return a new string
-        newString = new HTMLString.String('', @_preserveWhitespace)
+        newString = new HtmlString('', @_preserveWhitespace)
         newString.characters = (c.copy() for c in @characters.slice(from, to))
         return newString
 
@@ -459,7 +464,7 @@ class HTMLString.String
 
         # Check for zero or negative length selections
         if length <= 0
-            return new HTMLString.String('', @_preserveWhitespace)
+            return new HtmlString('', @_preserveWhitespace)
 
         if from < 0
             from = @length() + from
@@ -530,7 +535,7 @@ class HTMLString.String
 
         to = @length() - to - 1
 
-        newString = new HTMLString.String('', @_preserveWhitespace)
+        newString = new HtmlString('', @_preserveWhitespace)
         newString.characters = (c.copy() for c in @characters[from..to])
 
         return newString
@@ -544,7 +549,7 @@ class HTMLString.String
             if not c.isWhitespace()
                 break
 
-        newString = new HTMLString.String('', @_preserveWhitespace)
+        newString = new HtmlString('', @_preserveWhitespace)
         newString.characters = (c.copy() for c in @characters[from..to])
 
         return newString
@@ -560,7 +565,7 @@ class HTMLString.String
 
         to = @length() - to - 1
 
-        newString = new HTMLString.String('', @_preserveWhitespace)
+        newString = new HtmlString('', @_preserveWhitespace)
         newString.characters = (c.copy() for c in @characters[from..to])
 
         return newString
@@ -586,7 +591,7 @@ class HTMLString.String
 
     copy: () ->
         # Return a copy of the string
-        stringCopy = new HTMLString.String('', @_preserveWhitespace)
+        stringCopy = new HtmlString('', @_preserveWhitespace)
         stringCopy.characters = (c.copy() for c in @characters)
         return stringCopy
 
@@ -650,7 +655,7 @@ class _Parser
     constructor: () ->
 
         # Build the parser FSM
-        @fsm = new FSM.Machine(@)
+        @fsm = new FiniteStateMachine(@)
         @fsm.setInitialState(CHAR_OR_ENTITY_OR_TAG)
 
         # Character or tag
@@ -814,7 +819,7 @@ class _Parser
 
     _pushChar: (c) ->
         # Push a character on to the string
-        character = new HTMLString.Character(c, @tags)
+        character = new HtmlCharacter(c, @tags)
 
         # Do we need to preserve whitespace?
         if @_preserveWhitespace
@@ -837,7 +842,7 @@ class _Parser
         # Push a tag on to the stack applied to characters
 
         # Push the Tag on to the stack
-        tag = new HTMLString.Tag(@tagName, @attributes)
+        tag = new HtmlTag(@tagName, @attributes)
         @tags.push(tag)
 
         # Adding an empty character for self closing tags
@@ -847,7 +852,7 @@ class _Parser
 
             # Check if the tag was self closed and if not update the FSM to
             # close it.
-            if not @selfClosed and @tagName in HTMLString.Tag.SELF_CLOSING
+            if not @selfClosed and @tagName in HtmlTag.SELF_CLOSING
                 @fsm.reset()
 
         # Reset the tag buffers
@@ -921,7 +926,7 @@ class _Parser
         @head = 0
 
         # Temporary properties to store the current parser state
-        @string = new HTMLString.String()
+        @string = new HtmlString()
         @entity = ''
         @tags = []
         @tagName = ''
@@ -929,3 +934,5 @@ class _Parser
         @attributes = {}
         @attributeName = ''
         @attributeValue = ''
+
+module.exports = HtmlString

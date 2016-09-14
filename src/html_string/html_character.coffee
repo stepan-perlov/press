@@ -1,4 +1,4 @@
-class HTMLString.Character
+class HtmlCharacter
 
     # A HTML character
 
@@ -133,4 +133,6 @@ class HTMLString.Character
 
     copy: () ->
         # Return a copy of the character
-        return new HTMLString.Character(@_c, (t.copy() for t in @_tags))
+        return new HtmlCharacter(@_c, (t.copy() for t in @_tags))
+
+module.exports = HtmlCharacter
