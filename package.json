@@ -24,6 +24,7 @@
     "sinon": "^1.17.5",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.15.2",
     "yargs": "^5.0.0"
   },
   "scripts": {
