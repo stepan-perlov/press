@@ -43,8 +43,8 @@ class Node
     cssType: ->
         typeName = @type()
         unless cssTypeCache[typeName]
-            cssTypeName = []
-            for char in typeName[0] + typeName.slice(1)
+            cssTypeName = [typeName[0].toLowerCase()]
+            for char in typeName.slice(1)
                 if char == char.toLowerCase()
                     cssTypeName.push(char)
                 else

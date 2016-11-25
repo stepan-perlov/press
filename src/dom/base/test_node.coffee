@@ -10,21 +10,19 @@ QUnit.module "press.dom.Node",
         @root = new Root()
         @node = new Node(@root)
 
-test = QUnit.test
-
-test "Node.root", (assert)->
+QUnit.test "Node.root", (assert)->
     assert.equal @node.root, @root, "@root should exists"
 
-test "Node.lastModified()", (assert)->
+QUnit.test "Node.lastModified()", (assert)->
     assert.equal @node.lastModified(), null, "Initially the node should not be marked as modified"
 
-test "Node.parent()", (assert)->
+QUnit.test "Node.parent()", (assert)->
     parent = new NodeCollection(@root)
     parent.attach(@node)
 
     assert.equal @node.parent(), parent, "should return the parent node collection for the node"
 
-test "Node.parents()", (assert)->
+QUnit.test "Node.parents()", (assert)->
     grandParent = new NodeCollection(@root)
     parent = new NodeCollection(@root)
     grandParent.attach(parent)
@@ -32,13 +30,13 @@ test "Node.parents()", (assert)->
 
     assert.deepEqual @node.parents(), [parent, grandParent], "should return an ascending list of all the node's parents"
 
-test "Node.html()", (assert)->
+QUnit.test "Node.html()", (assert)->
     assert.throws @node.html, /`html` not implemented/, "should be abstract method"
 
-test "Node.type()", (assert)->
+QUnit.test "Node.type()", (assert)->
     assert.equal @node.type(), "Node", "should return `Node`"
 
-test "Node.bind()", (assert)->
+QUnit.test "Node.bind()", (assert)->
     testValue = key: 0
     testObject =
         firstCallback: -> testValue.key = 1
@@ -54,7 +52,7 @@ test "Node.bind()", (assert)->
     assert.ok secondSpy.called, "Second callback should be called"
     assert.equal testValue.key, 2, "testValue.key should replace secondCallback"
 
-test "Node.trigger()", (assert)->
+QUnit.test "Node.trigger()", (assert)->
     spy = sinon.spy()
 
     @node.bind("fire", spy)
@@ -62,7 +60,7 @@ test "Node.trigger()", (assert)->
 
     assert.ok spy.calledWith(1, 2, 3, 4), "should trigger an event against the node with specified arguments"
 
-test "Node.unbind()", (assert)->
+QUnit.test "Node.unbind()", (assert)->
     firstSpy = sinon.spy()
     secondSpy = sinon.spy()
 
@@ -82,7 +80,7 @@ test "Node.unbind()", (assert)->
     assert.notOk firstSpy.called, "should canceled first spy"
     assert.ok secondSpy.called, "should called second spy"
 
-test "Node.commit()", (assert)->
+QUnit.test "Node.commit()", (assert)->
     spy = sinon.spy()
     @root.bind("commit", spy)
 
@@ -92,7 +90,7 @@ test "Node.commit()", (assert)->
     assert.equal @node.lastModified(), null, "should set the last modified date of the node to null"
     assert.ok spy.called, "should trigger the commit event against the root"
 
-test "Node.taint()", (assert)->
+QUnit.test "Node.taint()", (assert)->
     spy = sinon.spy()
     @root.bind("taint", spy)
 
@@ -105,7 +103,7 @@ test "Node.taint()", (assert)->
     assert.equal @node.lastModified(), @root.lastModified(), "Should set last modified to root"
     assert.ok spy.called, "should trigger the taint event against the root"
 
-test "Node.closest()", (assert)->
+QUnit.test "Node.closest()", (assert)->
     grandParent = new NodeCollection(@root)
     parent = new NodeCollection(@root)
 
@@ -119,7 +117,7 @@ test "Node.closest()", (assert)->
     assert.equal @node.closest((node)-> !node.testFlag), parent, "Should return parent"
     assert.equal @node.closest((node)-> false), null, "Should return null"
 
-test "Node.next()", (assert)->
+QUnit.test "Node.next()", (assert)->
     parent = new NodeCollection(@root)
     siblingCollection = new NodeCollection(@root)
     siblingCollectionChild = new Node(@root)
@@ -135,7 +133,7 @@ test "Node.next()", (assert)->
     assert.equal @node.next().next().next(), siblingNode, "Must return next node"
     assert.equal @node.next().next().next().next(), null, "Must return null"
 
-test "Node.nextContent()", (assert)->
+QUnit.test "Node.nextContent()", (assert)->
     parent = new NodeCollection(@root)
     sibling = new NodeCollection(@root)
     siblingChild = new Text(@root, "p", {}, "testing")
@@ -146,7 +144,7 @@ test "Node.nextContent()", (assert)->
 
     assert.equal @node.nextContent(), siblingChild, "Must return text node"
 
-test "Node.nextSibling()", (assert)->
+QUnit.test "Node.nextSibling()", (assert)->
     parent = new NodeCollection(@root)
     siblingCollection = new NodeCollection(@root)
     siblingCollectionChild = new Node(@root)
@@ -161,7 +159,7 @@ test "Node.nextSibling()", (assert)->
     assert.equal @node.nextSibling().nextSibling(), siblingNode, "Must return next node"
     assert.equal @node.nextSibling().nextSibling().nextSibling(), null, "Must return null"
 
-test "Node.nextWithTest()", (assert)->
+QUnit.test "Node.nextWithTest()", (assert)->
     parent = new NodeCollection(@root)
     nextNode = new NodeCollection(@root)
     nextNodeChild = new Node(@root)
@@ -175,7 +173,7 @@ test "Node.nextWithTest()", (assert)->
     assert.equal @node.nextWithTest((node)-> node.testFlag), nextNodeChild, "should return the next node in the tree that matches"
     assert.equal @node.nextWithTest((node)-> false), null, "should return null"
 
-test "Node.previous()", (assert)->
+QUnit.test "Node.previous()", (assert)->
     parent = new NodeCollection(@root)
     siblingNode = new Node(@root)
     siblingCollection = new NodeCollection(@root)
@@ -193,7 +191,7 @@ test "Node.previous()", (assert)->
     assert.equal @node.previous().previous().previous().previous(), parent, "Must return parent"
     assert.equal @node.previous().previous().previous().previous().previous(), null, "Must return null"
 
-test "Node.previousContent()", (assert)->
+QUnit.test "Node.previousContent()", (assert)->
     parent = new NodeCollection(@root)
     sibling = new NodeCollection(@root)
     siblingChild = new Text(@root, "p", {}, "testing")
@@ -204,7 +202,7 @@ test "Node.previousContent()", (assert)->
 
     assert.equal @node.previousContent(), siblingChild, "Must return text node"
 
-test "Node.previousSibling()", (assert)->
+QUnit.test "Node.previousSibling()", (assert)->
     parent = new NodeCollection(@root)
     siblingNode = new Node(@root)
     siblingCollection = new NodeCollection(@root)
@@ -220,7 +218,7 @@ test "Node.previousSibling()", (assert)->
     assert.equal @node.previousSibling().previousSibling(), siblingNode, "Must return previous node"
     assert.equal @node.previousSibling().previousSibling().previousSibling(), null, "Must return null"
 
-test "Node.previousWithTest()", (assert)->
+QUnit.test "Node.previousWithTest()", (assert)->
     parent = new NodeCollection(@root)
     previousNode = new NodeCollection(@root)
     previousNodeChild = new Node(@root)
@@ -234,5 +232,5 @@ test "Node.previousWithTest()", (assert)->
     assert.equal @node.previousWithTest((node)-> node.testFlag), previousNodeChild, "should return the previous node in the tree that matches"
     assert.equal @node.previousWithTest((node)-> false), null, "should return null"
 
-test "Node.fromDOMElement()", (assert)->
+QUnit.test "Node.fromDOMElement()", (assert)->
     assert.throws Node.fromDOMElement, /`fromDOMElement` not implemented/, "should be abstract class method"

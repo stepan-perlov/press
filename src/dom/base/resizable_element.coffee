@@ -6,8 +6,8 @@ class ResizableElement extends Element
     # The `ResizableElement` class is used to implement elements that can be
     # resized (for example an image or video).
 
-    constructor: (tagName, attributes) ->
-        super(tagName, attributes)
+    constructor: (root, tagName, attributes) ->
+        super(root, tagName, attributes)
 
         # The DOM element used to display size information for the element
         @_domSizeInfoElement = null

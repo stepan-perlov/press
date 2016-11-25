@@ -1,8 +1,8 @@
 Node = require("./node.coffee")
 config = require("../config.coffee")
 attributesToString = require("../_/attributes_to_string.coffee")
-addCssClass = require("../_/add_css_class.coffee")
-removeCssClass = require("../_/remove_css_class.coffee")
+addCSSClass = require("../_/add_css_class.coffee")
+removeCSSClass = require("../_/remove_css_class.coffee")
 i18n = require("../_/i18n.coffee")
 
 class Element extends Node
@@ -131,7 +131,7 @@ class Element extends Node
         helper = document.createElement('div')
         helper.setAttribute(
             'class',
-            "ce-drag-helper ce-drag-helper--type-#{ @cssTypeName() }"
+            "ce-drag-helper ce-drag-helper--type-#{ @cssType() }"
             )
         helper.setAttribute('data-ce-type', i18n(@type()));
 
@@ -270,7 +270,7 @@ class Element extends Node
 
         # Add the type class
         @_addCSSClass('ce-element')
-        @_addCSSClass("ce-element--type-#{ @cssTypeName() }")
+        @_addCSSClass("ce-element--type-#{ @cssType() }")
 
         # Add the focused class if the element is focused
         if @isFocused()
@@ -353,7 +353,7 @@ class Element extends Node
         # but instead we must remove any classes applied on mount.
         if @isFixed()
             @_removeCSSClass('ce-element')
-            @_removeCSSClass("ce-element--type-#{ @cssTypeName() }")
+            @_removeCSSClass("ce-element--type-#{ @cssType() }")
             @_removeCSSClass('ce-element--focused')
 
             return

@@ -3,7 +3,7 @@ config = require("../config.coffee")
 # Translation - the ContentEdit library provides basic translation support
 # which is used both by the library itself and the associated ContentTools
 # library.
-_translations: {}
+_translations = {}
 
 i18n = (s) ->
     # Look for a translation of the given string and return it, or if no

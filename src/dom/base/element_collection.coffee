@@ -45,7 +45,7 @@ class ElementCollection extends Element
 
     detach: (element)->
         # Detach the specified element from the collection
-        @factory.NodeCollection::detach.call(this, element)
+        NodeCollection::detach.call(this, element)
 
         # Remove the collection if it's empty
         if @children.length == 0 and @parent()
