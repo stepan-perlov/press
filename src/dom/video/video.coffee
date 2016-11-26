@@ -158,3 +158,5 @@ class Video extends ResizableElement
             @getDOMElementAttributes(domElement),
             sources
             )
+
+module.exports = Video
