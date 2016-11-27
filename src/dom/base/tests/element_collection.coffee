@@ -1,12 +1,12 @@
 QUnit = require("qunitjs")
 sinon = require("sinon")
-config = require("../config.coffee")
-Root = require("./root.coffee")
-Element = require("./element.coffee")
-ElementCollection = require("./element_collection.coffee")
-Region = require("../region/region.coffee")
-List = require("../list/list.coffee")
-Text = require("../text/text.coffee")
+config = require("../../config.coffee")
+Root = require("../root.coffee")
+Element = require("../element.coffee")
+ElementCollection = require("../element_collection.coffee")
+Region = require("../../region/region.coffee")
+List = require("../../list/list.coffee")
+Text = require("../../text/text.coffee")
 
 INDENT = config.INDENT
 

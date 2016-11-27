@@ -1,14 +1,14 @@
 QUnit = require("qunitjs")
 sinon = require("sinon")
-config = require("../config.coffee")
-Root = require("../base/root.coffee")
-Region = require("../region/region.coffee")
-List = require("./list.coffee")
-ListItem = require("./list_item.coffee")
-ListItemText = require("./list_item_text.coffee")
+config = require("../../config.coffee")
+Root = require("../../base/root.coffee")
+Region = require("../../region/region.coffee")
+List = require("../list.coffee")
+ListItem = require("../list_item.coffee")
+ListItemText = require("../list_item_text.coffee")
 
-HTMLString = require("../../html_string/html_string.coffee")
-HTMLSelection = require("../../html_selection/html_selection.coffee")
+HTMLString = require("../../../html_string/html_string.coffee")
+HTMLSelection = require("../../../html_selection/html_selection.coffee")
 
 QUnit.module "press.dom.ListItemText",
     beforeEach: ->

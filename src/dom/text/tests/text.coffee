@@ -1,12 +1,12 @@
 QUnit = require("qunitjs")
 sinon = require("sinon")
-config = require("../config.coffee")
-Root = require("../base/root.coffee")
-Region = require("../region/region.coffee")
-Text = require("./text.coffee")
-Static = require("../static/static.coffee")
-HTMLString = require("../../html_string/html_string.coffee")
-HTMLSelection = require("../../html_selection/html_selection.coffee")
+config = require("../../config.coffee")
+Root = require("../../base/root.coffee")
+Region = require("../../region/region.coffee")
+Text = require("../text.coffee")
+Static = require("../../static/static.coffee")
+HTMLString = require("../../../html_string/html_string.coffee")
+HTMLSelection = require("../../../html_selection/html_selection.coffee")
 
 QUnit.module "press.dom.Text",
     beforeEach: ->

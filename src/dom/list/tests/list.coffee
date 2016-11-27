@@ -1,14 +1,14 @@
 QUnit = require("qunitjs")
 sinon = require("sinon")
-config = require("../config.coffee")
-Root = require("../base/root.coffee")
-Region = require("../region/region.coffee")
-List = require("./list.coffee")
-Image = require("../image/image.coffee")
-PreText = require("../text/pre_text.coffee")
-Text = require("../text/text.coffee")
-Static = require("../static/static.coffee")
-Video = require("../video/video.coffee")
+config = require("../../config.coffee")
+Root = require("../../base/root.coffee")
+Region = require("../../region/region.coffee")
+List = require("../list.coffee")
+Image = require("../../image/image.coffee")
+PreText = require("../../text/pre_text.coffee")
+Text = require("../../text/text.coffee")
+Static = require("../../static/static.coffee")
+Video = require("../../video/video.coffee")
 
 QUnit.module "press.dom.List",
     beforeEach: ->
