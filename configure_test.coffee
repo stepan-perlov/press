@@ -3,7 +3,7 @@ webpack = require("webpack")
 ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 module.exports = (options)->
-    entry: "./src/dom/test_index.coffee"
+    entry: "./src/dom/tests.coffee"
     output:
         path: path.join(__dirname, "build")
         filename: "press-test.js"

@@ -22,4 +22,10 @@ require("./list/tests/list_item_text.coffee")
 require("./image/tests/image.coffee")
 require("./video/tests/video.coffee")
 
+require("./table/tests/table.coffee")
+require("./table/tests/table_section.coffee")
+require("./table/tests/table_row.coffee")
+require("./table/tests/table_cell.coffee")
+require("./table/tests/table_cell_text.coffee")
+
 QUnit.start()
