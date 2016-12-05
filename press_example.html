@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Press Example</title>
+</head>
+<body>
+    <div id="editor"></div>
+    <div data-region="data">
+        <h1>Lorem ipsum it dolor</h1>
+        <p>Lorem ipsum it dolor. Lorem ipsum it dolor. <i>Lorem ipsum it dolor.</i> Lorem ipsum it dolor.</p>
+        <p>Lorem ipsum it dolor. <b>Lorem ipsum it dolor.</b> Lorem ipsum it dolor. Lorem ipsum it dolor.</p>
+    </div>
+    <script src="/build/press.js"></script>
+    <script>
+        new Press.Editor(
+            document.getElementById("editor"),
+            "[data-region = 'data']"
+        );
+    </script>
+</body>
+</html>

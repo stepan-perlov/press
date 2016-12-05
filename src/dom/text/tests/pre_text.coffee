@@ -9,7 +9,7 @@ HTMLSelection = require("../../../html_selection/html_selection.coffee")
 QUnit.module "press.dom.PreText",
     beforeEach: ->
         @root = new Root()
-        @region = new Region(@root, document.createElement("div"))
+        @region = new Region(@root, document.getElementById("qunit-fixture"))
         @preText = new PreText(@root, "pre", {}, "Lorem <b>ipsum</b> it dolor")
 
 QUnit.test "PreText.type()", (assert)->

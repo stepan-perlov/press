@@ -11,7 +11,7 @@ HTMLSelection = require("../../../html_selection/html_selection.coffee")
 QUnit.module "press.dom.Text",
     beforeEach: ->
         @root = new Root()
-        @region = new Region(@root, document.createElement("div"))
+        @region = new Region(@root, document.getElementById("qunit-fixture"))
         @text = new Text(@root, "p", {}, "Lorem <b>ipsum</b> it dolor")
 
 QUnit.test "Text.type()", (assert)->
@@ -140,7 +140,6 @@ QUnit.test "Text.selection()", (assert)->
     @region.attach(@text)
 
     @text.selection(new HTMLSelection(1, 2))
-
     assert.deepEqual @text.selection().get(), [1, 2]
 
 QUnit.test "Text.storeState", (assert)->
@@ -310,7 +309,7 @@ QUnit.test "Text._keyReturn()", (assert)->
         preventDefault: -> return
         shiftKey: true
 
-    new HTMLSelection(lastPosition - 1, lastPosition - 1).select(text.domElement())
+    new HTMLSelection(lastPosition, lastPosition).select(text.domElement())
     text._keyReturn(eventWithShift)
 
     assert.equal region.children[3].content.html(), "#{beforeLastChar}<br>#{lastChar}"
@@ -343,7 +342,7 @@ QUnit.test "Text._keyReturn() & PREFER_LINE_BREAKS", (assert)->
     beforeLastChar = content.slice(0, lastPosition)
     lastChar = content[lastPosition]
 
-    new HTMLSelection(lastPosition - 1, lastPosition - 1).select(text.domElement())
+    new HTMLSelection(lastPosition, lastPosition).select(text.domElement())
     text._keyReturn(ev)
 
     assert.equal region.children[0].content.html(), "#{beforeLastChar}<br>#{lastChar}"
@@ -362,7 +361,7 @@ QUnit.test "Text._keyReturn() & PREFER_LINE_BREAKS", (assert)->
         preventDefault: -> return
         shiftKey: true
 
-    new HTMLSelection(lastPosition - 1, lastPosition - 1).select(text.domElement())
+    new HTMLSelection(lastPosition, lastPosition).select(text.domElement())
     text._keyReturn(eventWithShift)
 
     assert.equal region.children[2].content.text(), beforeLastChar

@@ -351,7 +351,7 @@ class Text extends Element
         # line-breaks over new paragraphs then insert a line-break instead of
         # creating a new paragraph.
         if ev.shiftKey ^ config.PREFER_LINE_BREAKS
-            insertAt = selection.get()[0] + 1
+            insertAt = selection.get()[0]
 
             # Check if this is the last character in the row
             lineBreakStr = '<br>'
