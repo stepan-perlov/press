@@ -13,6 +13,8 @@ baseConfig = ->
             test: /\.coffee$/
             loader: "coffee-loader"
         ]
+    resolve:
+        extensions: ["", ".js", ".coffee"]
 
 module.exports = (argv)->
     config = baseConfig()

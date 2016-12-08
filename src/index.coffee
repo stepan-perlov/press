@@ -1,4 +1,4 @@
-Editor = require("./editor/editor.coffee")
+Editor = require("./editor/editor")
 
 window.Press =
     Editor: Editor

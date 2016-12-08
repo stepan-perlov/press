@@ -1,10 +1,10 @@
 QUnit = require("qunitjs")
 sinon = require("sinon")
-Root = require("../root.coffee")
-Region = require("../../region/region.coffee")
-Element = require("../element.coffee")
-ResizableElement = require("../resizable_element.coffee")
-Text = require("../../text/text.coffee")
+Root = require("../root")
+Region = require("../../region/region")
+Element = require("../element")
+ResizableElement = require("../resizable_element")
+Text = require("../../text/text")
 
 QUnit.module "press.dom.Root",
     beforeEach: ->

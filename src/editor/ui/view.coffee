@@ -1,7 +1,7 @@
-addCSSClass = require("../../dom/_/add_css_class.coffee")
-removeCSSClass = require("../../dom/_/remove_css_class.coffee")
+addCSSClass = require("../../dom/_/add_css_class")
+removeCSSClass = require("../../dom/_/remove_css_class")
 
-Event = require("./event.coffee")
+Event = require("./event")
 
 class View
 

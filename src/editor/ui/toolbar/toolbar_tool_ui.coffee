@@ -1,5 +1,5 @@
-Anchored = require("../anchored.coffee")
-i18n = require("../../../dom/_/i18n.coffee")
+Anchored = require("../anchored")
+i18n = require("../../../dom/_/i18n")
 
 class ToolbarToolUI extends Anchored
 

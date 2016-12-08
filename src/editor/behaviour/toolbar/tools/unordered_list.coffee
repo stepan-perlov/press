@@ -1,7 +1,7 @@
-ToolbarTool = require("../toolbar_tool.coffee")
-List = require("../../../../dom/list/list.coffee")
-ListItem = require("../../../../dom/list/list_item.coffee")
-ListItemText = require("../../../../dom/list/list_item_text.coffee")
+ToolbarTool = require("../toolbar_tool")
+List = require("../../../../dom/list/list")
+ListItem = require("../../../../dom/list/list_item")
+ListItemText = require("../../../../dom/list/list_item_text")
 
 class UnorderedList extends ToolbarTool
 

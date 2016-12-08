@@ -1,4 +1,4 @@
-toolsFactory = require("./tools/index.coffee")
+toolsFactory = require("./tools/index")
 
 class Toolbar
     # The `Toolbar` class allows tools to be stored using a name (string) as a

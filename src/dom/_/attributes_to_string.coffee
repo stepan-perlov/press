@@ -1,4 +1,4 @@
-HtmlString = require("../../html_string/html_string.coffee")
+HtmlString = require("../../html_string/html_string")
 
 module.exports = (attributes) ->
     # Convert a dictionary of attributes into a string (e.g key="value")

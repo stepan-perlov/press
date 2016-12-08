@@ -1,9 +1,9 @@
-Node = require("./node.coffee")
-config = require("../config.coffee")
-attributesToString = require("../_/attributes_to_string.coffee")
-addCSSClass = require("../_/add_css_class.coffee")
-removeCSSClass = require("../_/remove_css_class.coffee")
-i18n = require("../_/i18n.coffee")
+Node = require("./node")
+config = require("../config")
+attributesToString = require("../_/attributes_to_string")
+addCSSClass = require("../_/add_css_class")
+removeCSSClass = require("../_/remove_css_class")
+i18n = require("../_/i18n")
 
 class Element extends Node
 

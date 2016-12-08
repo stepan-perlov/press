@@ -1,5 +1,5 @@
-classByTag = require("../class_by_tag.coffee")
-NodeCollection = require("../base/node_collection.coffee")
+classByTag = require("../class_by_tag")
+NodeCollection = require("../base/node_collection")
 
 class Region extends NodeCollection
 

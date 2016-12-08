@@ -1,5 +1,5 @@
-HTMLTag = require("../../../../html_string/html_tag.coffee")
-ToolbarTool = require("../toolbar_tool.coffee")
+HTMLTag = require("../../../../html_string/html_tag")
+ToolbarTool = require("../toolbar_tool")
 
 class Bold extends ToolbarTool
     constructor: (@editor, @tools)->

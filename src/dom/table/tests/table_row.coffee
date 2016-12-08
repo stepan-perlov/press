@@ -1,11 +1,11 @@
 QUnit = require("qunitjs")
 sinon = require("sinon")
-config = require("../../config.coffee")
-Root = require("../../base/root.coffee")
+config = require("../../config")
+Root = require("../../base/root")
 
-Region = require("../../region/region.coffee")
-Table = require("../table.coffee")
-TableRow = require("../table_row.coffee")
+Region = require("../../region/region")
+Table = require("../table")
+TableRow = require("../table_row")
 
 QUnit.module "press.dom.TableRow",
     beforeEach: ->

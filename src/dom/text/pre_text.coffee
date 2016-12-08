@@ -1,8 +1,8 @@
-HtmlString = require("../../html_string/html_string.coffee")
-HtmlSelection = require("../../html_selection/html_selection.coffee")
-Element = require("../base/element.coffee")
-Text = require("./text.coffee")
-classByTag = require("../class_by_tag.coffee")
+HtmlString = require("../../html_string/html_string")
+HtmlSelection = require("../../html_selection/html_selection")
+Element = require("../base/element")
+Text = require("./text")
+classByTag = require("../class_by_tag")
 
 class PreText extends Text
 

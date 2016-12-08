@@ -1,4 +1,4 @@
-uniqueId = require("../_/unique_id.coffee")
+uniqueId = require("../_/unique_id")
 cssTypeCache = {}
 
 class Node

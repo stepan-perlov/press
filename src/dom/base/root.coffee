@@ -1,8 +1,8 @@
-HtmlSelection = require("../../html_selection/html_selection.coffee")
-Node = require("./node.coffee")
-config = require("../config.coffee")
-addCSSClass = require("../_/add_css_class.coffee")
-removeCSSClass = require("../_/remove_css_class.coffee")
+HtmlSelection = require("../../html_selection/html_selection")
+Node = require("./node")
+config = require("../config")
+addCSSClass = require("../_/add_css_class")
+removeCSSClass = require("../_/remove_css_class")
 
 class Root extends Node
     # The root node manages state and listens for events for all nodes. However

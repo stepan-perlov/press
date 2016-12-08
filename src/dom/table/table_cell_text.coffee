@@ -1,7 +1,7 @@
-HtmlSelection = require("../../html_selection/html_selection.coffee")
-config = require("../config.coffee")
-Element = require("../base/element.coffee")
-Text = require("../text/text.coffee")
+HtmlSelection = require("../../html_selection/html_selection")
+config = require("../config")
+Element = require("../base/element")
+Text = require("../text/text")
 
 class TableCellText extends Text
 

@@ -1,6 +1,6 @@
-ElementCollection = require("../base/element_collection.coffee")
+ElementCollection = require("../base/element_collection")
 
-TableRow = require("./table_row.coffee")
+TableRow = require("./table_row")
 
 class TableSection extends ElementCollection
 

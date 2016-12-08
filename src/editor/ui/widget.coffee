@@ -1,4 +1,4 @@
-View = require("./view.coffee")
+View = require("./view")
 
 class Widget extends View
 

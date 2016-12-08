@@ -1,9 +1,9 @@
 QUnit = require("qunitjs")
-config = require("../../config.coffee")
-i18n = require("../i18n.coffee")
-addCSSClass = require("../add_css_class.coffee")
-removeCSSClass = require("../remove_css_class.coffee")
-attributesToString = require("../attributes_to_string.coffee")
+config = require("../../config")
+i18n = require("../i18n")
+addCSSClass = require("../add_css_class")
+removeCSSClass = require("../remove_css_class")
+attributesToString = require("../attributes_to_string")
 
 QUnit.module "press.dom._"
 

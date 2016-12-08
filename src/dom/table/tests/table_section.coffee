@@ -1,9 +1,9 @@
 QUnit = require("qunitjs")
 sinon = require("sinon")
-config = require("../../config.coffee")
-Root = require("../../base/root.coffee")
+config = require("../../config")
+Root = require("../../base/root")
 
-TableSection = require("../table_section.coffee")
+TableSection = require("../table_section")
 
 QUnit.module "press.dom.TableSection",
     beforeEach: ->

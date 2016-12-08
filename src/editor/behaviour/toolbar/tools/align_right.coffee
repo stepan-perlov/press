@@ -1,4 +1,4 @@
-AlignLeft = require("./align_left.coffee")
+AlignLeft = require("./align_left")
 
 class AlignRight extends AlignLeft
 

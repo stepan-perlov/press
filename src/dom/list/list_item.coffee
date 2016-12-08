@@ -1,11 +1,11 @@
-HtmlSelection = require("../../html_selection/html_selection.coffee")
-HtmlString = require("../../html_string/html_string.coffee")
+HtmlSelection = require("../../html_selection/html_selection")
+HtmlString = require("../../html_string/html_string")
 
-config = require("../config.coffee")
-ElementCollection = require("../base/element_collection.coffee")
+config = require("../config")
+ElementCollection = require("../base/element_collection")
 
-Text = require("../text/text.coffee")
-ListItemText = require("./list_item_text.coffee")
+Text = require("../text/text")
+ListItemText = require("./list_item_text")
 
 class ListItem extends ElementCollection
 

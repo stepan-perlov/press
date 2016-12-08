@@ -1,6 +1,6 @@
-FiniteStateMachine = require("../finite_state_machine/finite_state_machine.coffee")
-HtmlCharacter = require("./html_character.coffee")
-HtmlTag = require("./html_tag.coffee")
+FiniteStateMachine = require("../finite_state_machine/finite_state_machine")
+HtmlCharacter = require("./html_character")
+HtmlTag = require("./html_tag")
 
 
 class HtmlString

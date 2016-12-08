@@ -1,12 +1,12 @@
 QUnit = require("qunitjs")
 sinon = require("sinon")
-config = require("../../config.coffee")
-Root = require("../../base/root.coffee")
-Region = require("../../region/region.coffee")
-Image = require("../image.coffee")
-PreText = require("../../text/pre_text.coffee")
-Text = require("../../text/text.coffee")
-Static = require("../../static/static.coffee")
+config = require("../../config")
+Root = require("../../base/root")
+Region = require("../../region/region")
+Image = require("../image")
+PreText = require("../../text/pre_text")
+Text = require("../../text/text")
+Static = require("../../static/static")
 
 QUnit.module "press.dom.Image",
     beforeEach: ->

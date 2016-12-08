@@ -1,7 +1,7 @@
-HtmlTag = require("../../html_string/html_tag.coffee")
-Element = require("../base/element.coffee")
-classByTag = require("../class_by_tag.coffee")
-config = require("../config.coffee")
+HtmlTag = require("../../html_string/html_tag")
+Element = require("../base/element")
+classByTag = require("../class_by_tag")
+config = require("../config")
 
 
 class Static extends Element

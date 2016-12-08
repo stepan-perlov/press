@@ -1,9 +1,9 @@
-classByTag = require("../class_by_tag.coffee")
-Element = require("../base/element.coffee")
-ElementCollection = require("../base/element_collection.coffee")
+classByTag = require("../class_by_tag")
+Element = require("../base/element")
+ElementCollection = require("../base/element_collection")
 
-TableSection = require("./table_section.coffee")
-TableRow = require("./table_row.coffee")
+TableSection = require("./table_section")
+TableRow = require("./table_row")
 
 class Table extends ElementCollection
 

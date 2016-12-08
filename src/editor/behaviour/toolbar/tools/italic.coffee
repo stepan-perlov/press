@@ -1,4 +1,4 @@
-Bold = require("./bold.coffee")
+Bold = require("./bold")
 
 class Italic extends Bold
     constructor: (@editor, @tools)->

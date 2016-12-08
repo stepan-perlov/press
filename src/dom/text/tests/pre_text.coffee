@@ -1,10 +1,10 @@
 QUnit = require("qunitjs")
 sinon = require("sinon")
-config = require("../../config.coffee")
-Root = require("../../base/root.coffee")
-Region = require("../../region/region.coffee")
-PreText = require("../pre_text.coffee")
-HTMLSelection = require("../../../html_selection/html_selection.coffee")
+config = require("../../config")
+Root = require("../../base/root")
+Region = require("../../region/region")
+PreText = require("../pre_text")
+HTMLSelection = require("../../../html_selection/html_selection")
 
 QUnit.module "press.dom.PreText",
     beforeEach: ->

@@ -1,8 +1,8 @@
-HtmlString = require("../../html_string/html_string.coffee")
-HtmlSelection = require("../../html_selection/html_selection.coffee")
-Element = require("../base/element.coffee")
-classByTag = require("../class_by_tag.coffee")
-config = require("../config.coffee")
+HtmlString = require("../../html_string/html_string")
+HtmlSelection = require("../../html_selection/html_selection")
+Element = require("../base/element")
+classByTag = require("../class_by_tag")
+config = require("../config")
 
 
 class Text extends Element

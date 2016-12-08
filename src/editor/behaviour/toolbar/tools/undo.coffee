@@ -1,4 +1,4 @@
-ToolbarTool = require("../toolbar_tool.coffee")
+ToolbarTool = require("../toolbar_tool")
 
 class Undo extends ToolbarTool
     # Undo an action.

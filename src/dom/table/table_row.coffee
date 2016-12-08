@@ -1,7 +1,7 @@
-Element = require("../base/element.coffee")
-ElementCollection = require("../base/element_collection.coffee")
+Element = require("../base/element")
+ElementCollection = require("../base/element_collection")
 
-TableCell = require("./table_cell.coffee")
+TableCell = require("./table_cell")
 
 class TableRow extends ElementCollection
 

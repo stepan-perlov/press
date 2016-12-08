@@ -1,5 +1,5 @@
-Element = require("./element.coffee")
-config = require("../config.coffee")
+Element = require("./element")
+config = require("../config")
 
 class ResizableElement extends Element
 

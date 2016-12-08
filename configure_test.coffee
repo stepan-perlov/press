@@ -23,6 +23,7 @@ baseConfig = ->
         new ExtractTextPlugin("[name].css")
     ]
     resolve:
+        extensions: ["", ".js", ".coffee"]
         alias:
             sinon: "sinon/pkg/sinon" # https://github.com/webpack/webpack/issues/177#issuecomment-185718237
 

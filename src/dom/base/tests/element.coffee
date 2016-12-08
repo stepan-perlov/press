@@ -1,10 +1,10 @@
 QUnit = require("qunitjs")
 sinon = require("sinon")
-Root = require("../root.coffee")
-Element = require("../element.coffee")
-Region = require("../../region/region.coffee")
-Image = require("../../image/image.coffee")
-Text = require("../../text/text.coffee")
+Root = require("../root")
+Element = require("../element")
+Region = require("../../region/region")
+Image = require("../../image/image")
+Text = require("../../text/text")
 
 QUnit.module "press.dom.Element",
     beforeEach: ->

@@ -1,4 +1,4 @@
-config = require("../config.coffee")
+config = require("../config")
 
 # Translation - the ContentEdit library provides basic translation support
 # which is used both by the library itself and the associated ContentTools

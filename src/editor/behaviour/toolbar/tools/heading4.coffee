@@ -1,4 +1,4 @@
-Heading1 = require("./heading1.coffee")
+Heading1 = require("./heading1")
 
 class Heading4 extends Heading1
 

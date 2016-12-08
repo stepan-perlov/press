@@ -1,8 +1,8 @@
 QUnit = require("qunitjs")
 sinon = require("sinon")
-Root = require("../root.coffee")
-Node = require("../node.coffee")
-NodeCollection = require("../node_collection.coffee")
+Root = require("../root")
+Node = require("../node")
+NodeCollection = require("../node_collection")
 
 QUnit.module "press.dom.NodeCollection",
     beforeEach: ->

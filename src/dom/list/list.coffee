@@ -1,9 +1,9 @@
-classByTag = require("../class_by_tag.coffee")
-Element = require("../base/element.coffee")
-ElementCollection = require("../base/element_collection.coffee")
-Text = require("../text/text.coffee")
+classByTag = require("../class_by_tag")
+Element = require("../base/element")
+ElementCollection = require("../base/element_collection")
+Text = require("../text/text")
 
-ListItem = require("./list_item.coffee")
+ListItem = require("./list_item")
 
 class List extends ElementCollection
 

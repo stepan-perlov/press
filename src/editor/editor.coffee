@@ -1,20 +1,20 @@
-HTMLSelection = require("../html_selection/html_selection.coffee")
-HTMLString = require("../html_string/html_string.coffee")
+HTMLSelection = require("../html_selection/html_selection")
+HTMLString = require("../html_string/html_string")
 
-addCSSClass = require("../dom/_/add_css_class.coffee")
-removeCSSClass = require("../dom/_/remove_css_class.coffee")
+addCSSClass = require("../dom/_/add_css_class")
+removeCSSClass = require("../dom/_/remove_css_class")
 
-Root = require("../dom/base/root.coffee")
-Region = require("../dom/region/region.coffee")
-Text = require("../dom/text/text.coffee")
-ListItem = require("../dom/list/list_item.coffee")
-ListItemText = require("../dom/list/list_item_text.coffee")
+Root = require("../dom/base/root")
+Region = require("../dom/region/region")
+Text = require("../dom/text/text")
+ListItem = require("../dom/list/list_item")
+ListItemText = require("../dom/list/list_item_text")
 
-config = require("./config.coffee")
-View = require("./ui/view.coffee")
-History = require("./behaviour/history.coffee")
+config = require("./config")
+View = require("./ui/view")
+History = require("./behaviour/history")
 
-ToolbarUI = require("./ui/toolbar/toolbar_ui.coffee")
+ToolbarUI = require("./ui/toolbar/toolbar_ui")
 
 class Editor extends View
     #

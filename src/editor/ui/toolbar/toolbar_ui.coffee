@@ -1,11 +1,11 @@
-HTMLSelection = require("../../../html_selection/html_selection.coffee")
-addCSSClass = require("../../../dom/_/add_css_class.coffee")
-removeCSSClass = require("../../../dom/_/remove_css_class.coffee")
+HTMLSelection = require("../../../html_selection/html_selection")
+addCSSClass = require("../../../dom/_/add_css_class")
+removeCSSClass = require("../../../dom/_/remove_css_class")
 
-ToolbarBehaviour = require("../../behaviour/toolbar/toolbar.coffee")
+ToolbarBehaviour = require("../../behaviour/toolbar/toolbar")
 
-Widget = require("../widget.coffee")
-ToolbarToolUI = require("./toolbar_tool_ui.coffee")
+Widget = require("../widget")
+ToolbarToolUI = require("./toolbar_tool_ui")
 
 class ToolbarUI extends Widget
 

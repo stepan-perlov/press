@@ -1,15 +1,15 @@
 QUnit = require("qunitjs")
 sinon = require("sinon")
 
-HTMLString = require("../../../html_string/html_string.coffee")
-HTMLSelection = require("../../../html_selection/html_selection.coffee")
-config = require("../../config.coffee")
+HTMLString = require("../../../html_string/html_string")
+HTMLSelection = require("../../../html_selection/html_selection")
+config = require("../../config")
 
-Root = require("../../base/root.coffee")
-Region = require("../../region/region.coffee")
+Root = require("../../base/root")
+Region = require("../../region/region")
 
-Table = require("../table.coffee")
-TableCellText = require("../table_cell_text.coffee")
+Table = require("../table")
+TableCellText = require("../table_cell_text")
 
 QUnit.module "press.dom.TableCellText",
     beforeEach: ->

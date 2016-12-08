@@ -1,5 +1,5 @@
-ToolbarTool = require("../toolbar_tool.coffee")
-Text = require("../../../../dom/text/text.coffee")
+ToolbarTool = require("../toolbar_tool")
+Text = require("../../../../dom/text/text")
 
 class Heading1 extends ToolbarTool
 

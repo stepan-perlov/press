@@ -1,9 +1,9 @@
 QUnit = require("qunitjs")
 sinon = require("sinon")
-config = require("../../config.coffee")
-Root = require("../../base/root.coffee")
-Region = require("../region.coffee")
-Text = require("../../text/text.coffee")
+config = require("../../config")
+Root = require("../../base/root")
+Region = require("../region")
+Text = require("../../text/text")
 
 QUnit.module "press.dom.Region",
     beforeEach: ->

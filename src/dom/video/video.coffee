@@ -1,8 +1,8 @@
-classByTag = require("../class_by_tag.coffee")
-Element = require("../base/element.coffee")
-ResizableElement = require("../base/resizable_element.coffee")
-config = require("../config.coffee")
-attributesToString = require("../_/attributes_to_string.coffee")
+classByTag = require("../class_by_tag")
+Element = require("../base/element")
+ResizableElement = require("../base/resizable_element")
+config = require("../config")
+attributesToString = require("../_/attributes_to_string")
 
 
 class Video extends ResizableElement

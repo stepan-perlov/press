@@ -1,7 +1,7 @@
-config = require("../config.coffee")
-ElementCollection = require("../base/element_collection.coffee")
+config = require("../config")
+ElementCollection = require("../base/element_collection")
 
-TableCellText = require("./table_cell_text.coffee")
+TableCellText = require("./table_cell_text")
 
 class TableCell extends ElementCollection
 

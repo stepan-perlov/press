@@ -1,4 +1,4 @@
-UnorderedList = require("./unordered_list.coffee")
+UnorderedList = require("./unordered_list")
 
 class OrderedList extends UnorderedList
 

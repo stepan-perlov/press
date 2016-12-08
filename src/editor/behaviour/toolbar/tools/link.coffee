@@ -1,4 +1,4 @@
-ToolbarTool = require("../toolbar_tool.coffee")
+ToolbarTool = require("../toolbar_tool")
 # TODO: modal
 
 class Link extends ToolbarTool

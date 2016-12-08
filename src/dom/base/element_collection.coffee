@@ -1,6 +1,6 @@
-Element = require("./element.coffee")
-NodeCollection = require("./node_collection.coffee")
-config = require("../config.coffee")
+Element = require("./element")
+NodeCollection = require("./node_collection")
+config = require("../config")
 
 class ElementCollection extends Element
 

@@ -1,1 +1,1 @@
-require("./dom/tests.coffee")
+require("./dom/tests")
