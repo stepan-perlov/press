@@ -4,6 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Press Example</title>
+    <link rel="stylesheet" href="/assets/press-tests-vendor.css"/>
+    <link rel="stylesheet" href="/assets/press.css"/>
+    <style>
+        body {
+            padding: 25px;
+            min-width: 480px;
+            max-width: 1200px;
+        }
+    </style>
 </head>
 <body>
     <div id="editor"></div>
@@ -12,6 +21,7 @@
         <p>Lorem ipsum it dolor. Lorem ipsum it dolor. <i>Lorem ipsum it dolor.</i> Lorem ipsum it dolor.</p>
         <p>Lorem ipsum it dolor. <b>Lorem ipsum it dolor.</b> Lorem ipsum it dolor. Lorem ipsum it dolor.</p>
     </div>
+    <script src="/assets/press-tests-vendor.js"></script>
     <script src="/assets/press.js"></script>
     <script>
         new Press.Editor(

@@ -8,7 +8,6 @@ class Paragraph extends ToolbarTool
     constructor: (@editor, @tools)->
         @requiresElement = true
         @label = 'Paragraph'
-        @icon = 'paragraph'
         @tagName = 'p'
 
     canApply: (element, selection) ->

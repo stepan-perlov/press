@@ -60,8 +60,10 @@ module.exports =
             "unordered_list",
             "ordered_list"
         ], [
-            "indent",
             "unindent"
+            "indent",
+        ], [
+            "image"
         ], [
             "undo",
             "redo",

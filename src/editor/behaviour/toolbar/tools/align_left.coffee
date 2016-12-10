@@ -7,7 +7,7 @@ class AlignLeft extends ToolbarTool
     constructor: (@editor, @tools)->
         @requiresElement = true
         @label = 'Align left'
-        @icon = 'align-left'
+        @icon = 'format_align_left'
         @className = 'text-left'
 
     canApply: (element, selection) ->

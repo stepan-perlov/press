@@ -6,7 +6,7 @@ class Unindent extends ToolbarTool
     constructor: (@editor, @tools)->
         @requiresElement = true
         @label = 'Unindent'
-        @icon = 'unindent'
+        @icon = 'format_indent_decrease'
 
     canApply: (element, selection) ->
         # Return true if the tool can be applied to the current

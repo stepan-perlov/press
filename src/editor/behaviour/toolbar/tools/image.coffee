@@ -1,26 +1,20 @@
 ToolbarTool = require("../toolbar_tool")
 
-class Indent extends ToolbarTool
+class Image extends ToolbarTool
 
     # Indent a list item.
     constructor: (@editor, @tools)->
         @requiresElement = true
-        @label = 'Indent'
-        @icon = 'format_indent_increase'
+        @label = 'Image'
+        @icon = 'insert_photo'
 
     canApply: (element, selection) ->
         # Return true if the tool can be applied to the current
         # element/selection.
-
-        return element.parent().type() is 'ListItem' and
-                element.parent().parent().children.indexOf(element.parent()) > 0
+        return true
 
     apply: (element, selection, callback) ->
         # Apply the tool to the current element
+        @editor.root.trigger("image:apply", element, selection, callback)
 
-        # Indent the list item
-        element.parent().indent()
-
-        callback(true)
-
-module.exports = Indent
+module.exports = Image

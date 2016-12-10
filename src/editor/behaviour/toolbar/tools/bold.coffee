@@ -5,7 +5,7 @@ class Bold extends ToolbarTool
     constructor: (@editor, @tools)->
         @requiresElement = true
         @label = "Bold"
-        @icon = "bold"
+        @icon = "format_bold"
         @tagName = "b"
 
     # Return true if the tool can be applied to the current

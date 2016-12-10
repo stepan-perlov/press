@@ -1,0 +1,56 @@
+$fonts_dir: "node_modules/roboto-npm-webfont/fonts";
+
+@font-face {
+  font-family: "Roboto";
+  src: local("Roboto Light"),
+         local("Roboto-Light"),
+         url("#{$fonts_dir}/robotolight.woff2") format("woff2"),
+         url("#{$fonts_dir}/robotolight.woff") format("woff"),
+         url("#{$fonts_dir}/robotolight.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: local("Roboto"),
+         local("Roboto-Regular"),
+         url("#{$fonts_dir}/roboto.woff2") format("woff2"),
+         url("#{$fonts_dir}/roboto.woff") format("woff"),
+         url("#{$fonts_dir}/roboto.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: local("Roboto Italic"),
+         local("Roboto-Italic"),
+         url("#{$fonts_dir}/robotoitalic.woff2") format("woff2"),
+         url("#{$fonts_dir}/robotoitalic.woff") format("woff"),
+         url("#{$fonts_dir}/robotoitalic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: local("Roboto Medium"),
+         local("Roboto-Medium"),
+         url("#{$fonts_dir}/robotomedium.woff2") format("woff2"),
+         url("#{$fonts_dir}/robotomedium.woff") format("woff"),
+         url("#{$fonts_dir}/robotomedium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: local("Roboto Bold"),
+         local("Roboto-Bold"),
+         url("#{$fonts_dir}/robotobold.woff2") format("woff2"),
+         url("#{$fonts_dir}/robotobold.woff") format("woff"),
+         url("#{$fonts_dir}/robotobold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: bold;
+}

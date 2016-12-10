@@ -8,7 +8,6 @@ class Heading1 extends ToolbarTool
     constructor: (@editor, @tools)->
         @requiresElement = true
         @label = 'Heading1'
-        @icon = 'heading'
         @tagName = 'h1'
 
     canApply: (element, selection) ->

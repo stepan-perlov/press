@@ -18,6 +18,8 @@ module.exports =
     indent: require("./indent")
     unindent: require("./unindent")
 
+    image: require("./image")
+
     undo: require("./undo")
     redo: require("./redo")
     remove: require("./remove")

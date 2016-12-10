@@ -7,7 +7,7 @@ class AlignCenter extends AlignLeft
     constructor: (@editor, @tools)->
         @requiresElement = true
         @label = 'Align center'
-        @icon = 'align-center'
+        @icon = 'format_align_center'
         @className = 'text-center'
 
 module.exports = AlignCenter

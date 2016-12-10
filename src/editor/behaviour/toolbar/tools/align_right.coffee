@@ -6,7 +6,7 @@ class AlignRight extends AlignLeft
     constructor: (@editor, @tools)->
         @requiresElement = true
         @label = 'Align right'
-        @icon = 'align-right'
+        @icon = 'format_align_right'
         @className = 'text-right'
 
 module.exports = AlignRight

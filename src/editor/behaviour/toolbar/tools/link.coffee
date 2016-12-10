@@ -8,7 +8,7 @@ class Link extends ToolbarTool
     constructor: (@editor, @tools)->
         @requiresElement = true
         @label = 'Link'
-        @icon = 'link'
+        @icon = 'insert_link'
         @tagName = 'a'
 
     getAttr: (attrName, element, selection) ->

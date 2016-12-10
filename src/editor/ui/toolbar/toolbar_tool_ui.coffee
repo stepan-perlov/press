@@ -1,3 +1,5 @@
+require("./toolbar_tool_ui.scss")
+
 Anchored = require("../anchored")
 i18n = require("../../../dom/_/i18n")
 
@@ -54,24 +56,29 @@ class ToolbarToolUI extends Anchored
         if disabledState
             # Disable the tool
             @_mouseDown = false
-            @addCSSClass('ct-tool--disabled')
+            @_domElement.setAttribute("disabled", "disabled")
             @removeCSSClass('ct-tool--applied')
 
         else
             # Enable the tool
-            @removeCSSClass('ct-tool--disabled')
+            @_domElement.removeAttribute("disabled")
 
     mount: (domParent, before=null) ->
         # Mount the component to the DOM
-
-        @_domElement = @constructor.createDiv([
-            'ct-tool',
-            "ct-tool--#{ @tool.icon }"
-            ])
+        @_domElement = document.createElement("button")
+        @_domElement.className = (
+            "ct-tool" +
+            " mdl-button" +
+            " mdl-js-button" +
+            " mdl-js-ripple-effect"
+        )
 
         # Add the tooltip
         @_domElement.setAttribute('data-tooltip', i18n(@tool.label))
-        @_domElement.innerHTML = @tool.label
+        if @tool.icon
+            @_domElement.innerHTML = """<i class="material-icons">#{@tool.icon}</i>"""
+        else
+            @_domElement.innerHTML = """<span class="ct-tool-text">#{@tool.tagName}</i>"""
 
         super(domParent, before)
 

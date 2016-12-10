@@ -7,7 +7,6 @@ class Heading3 extends Heading1
     constructor: (@editor, @tools)->
         @requiresElement = true
         @label = 'Heading3'
-        @icon = 'heading'
         @tagName = 'h3'
 
 module.exports = Heading3

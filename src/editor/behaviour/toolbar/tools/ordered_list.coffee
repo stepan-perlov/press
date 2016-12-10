@@ -7,7 +7,7 @@ class OrderedList extends UnorderedList
     constructor: (@editor, @tools)->
         @requiresElement = true
         @label = 'Numbers list'
-        @icon = 'ordered-list'
+        @icon = 'format_list_numbered'
         @listTag = 'ol'
 
 module.exports = OrderedList

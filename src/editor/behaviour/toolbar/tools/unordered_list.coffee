@@ -10,7 +10,7 @@ class UnorderedList extends ToolbarTool
     constructor: (@editor, @tools)->
         @requiresElement = true
         @label = 'Bullet list'
-        @icon = 'unordered-list'
+        @icon = 'format_list_bulleted'
         @listTag = 'ul'
 
     canApply: (element, selection) ->

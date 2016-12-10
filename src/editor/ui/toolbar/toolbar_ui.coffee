@@ -1,3 +1,5 @@
+require("./toolbar_ui.scss")
+
 HTMLSelection = require("../../../html_selection/html_selection")
 addCSSClass = require("../../../dom/_/add_css_class")
 removeCSSClass = require("../../../dom/_/remove_css_class")
@@ -28,26 +30,11 @@ class ToolbarUI extends Widget
         # ]
         @_tools = tools
 
-        # Flag indicating if the toolbox is currently being dragged
-        @_dragging = false
-
-        # The offset of the cursor to the toolbox's position on the page at the
-        # point we start dragging.
-        @_draggingOffset = null
-
-        # The DOM element relating to the toolbox's grip which allows the user
-        # to drag the toolbox to any position on the page.
-        @_domGrip = null
-
         # A map of tool UI components mounted to the toolbox
         @_toolUIs = {}
 
         @_lastUpdateElement = null
     # Read-only properties
-
-    isDragging: () ->
-        # Return true if the toolbox is currently being dragged
-        return @_dragging
 
     # Methods
 
@@ -72,32 +59,10 @@ class ToolbarUI extends Widget
 
         @parent().domElement().appendChild(@_domElement)
 
-        # Grip
-        @_domGrip = @constructor.createDiv([
-            'ct-toolbox__grip',
-            'ct-grip'
-            ])
-        @_domElement.appendChild(@_domGrip)
-
-        @_domGrip.appendChild(@constructor.createDiv(['ct-grip__bump']))
-        @_domGrip.appendChild(@constructor.createDiv(['ct-grip__bump']))
-        @_domGrip.appendChild(@constructor.createDiv(['ct-grip__bump']))
-
         # Tools
         @_domToolGroups = @constructor.createDiv(['ct-tool-groups'])
         @_domElement.appendChild(@_domToolGroups)
         @tools(@_tools)
-
-        # Restore the position of the element (if there's a restore set)
-        restore = window.localStorage.getItem('ct-toolbox-position')
-        if restore and /^\d+,\d+$/.test(restore)
-            position = (parseInt(coord) for coord in restore.split(','))
-            @_domElement.style.left = "#{ position[0] }px"
-            @_domElement.style.top = "#{ position[1] }px"
-
-            # After restoring the position make sure the toolbox is still
-            # visible in the window.
-            @_contain()
 
         # Add interaction handlers
         @_addDOMEventListeners()
@@ -163,15 +128,10 @@ class ToolbarUI extends Widget
         # Unmount the widget from the DOM
         super()
 
-        @_domGrip = null
-
     # Private methods
 
     _addDOMEventListeners: () ->
         # Add DOM event listeners for the widget
-
-        # Allow the toolbox to be dragged to a new location by the user
-        @_domGrip.addEventListener('mousedown', @_onStartDragging)
 
         # Ensure that when the window is resized the toolbox remains in view
         @_handleResize = (ev) =>
@@ -339,8 +299,6 @@ class ToolbarUI extends Widget
         # Remove DOM event listeners for the widget
 
         # Remove mouse event handlers
-        if @isMounted()
-            @_domGrip.removeEventListener('mousedown', @_onStartDragging)
 
         # Remove key events
         window.removeEventListener('keydown', @_handleKeyDown)
@@ -350,66 +308,5 @@ class ToolbarUI extends Widget
 
         # Remove timer for updating tools
         clearInterval(@_updateToolsTimeout)
-
-    # Dragging methods
-
-    _onDrag: (ev) =>
-        # User has dragged the toolbox to a new position
-
-        # Prevent content selection while dragging elements
-        HTMLSelection.unselectAll()
-
-        # Reposition the toolbox
-        @_domElement.style.left = "#{ ev.clientX - @_draggingOffset.x }px"
-        @_domElement.style.top = "#{ ev.clientY - @_draggingOffset.y }px"
-
-    _onStartDragging: (ev) =>
-        # Start dragging the toolbox
-        ev.preventDefault()
-
-        if @isDragging()
-            return
-
-        # Flag that the toolbox is being dragged
-        @_dragging = true
-        @addCSSClass('ct-toolbox--dragging')
-
-        # Calculate the offset of the cursor to the toolbox
-        rect = @_domElement.getBoundingClientRect()
-        @_draggingOffset = {
-            x: ev.clientX - rect.left,
-            y: ev.clientY - rect.top
-            }
-
-        # Setup dragging behaviour for the element
-        document.addEventListener('mousemove', @_onDrag)
-        document.addEventListener('mouseup', @_onStopDragging)
-
-        # Add dragging class to the body (this class is defined in ContentEdit
-        # it disabled content selection via CSS).
-        addCSSClass(document.body, 'ce--dragging')
-
-    _onStopDragging: (ev) =>
-        # User has finished dragging the toolbox to a new position
-        unless @isDragging()
-            return
-
-        # Ensure the toolbox isn't outside the window
-        @_contain()
-
-        # Remove dragging behaviour
-        document.removeEventListener('mousemove', @_onDrag)
-        document.removeEventListener('mouseup', @_onStopDragging)
-
-        # Reset the dragging offset
-        @_draggingOffset = null
-
-        # Flag that the toolbox is no longer being dragged
-        @_dragging = false
-        @removeCSSClass('ct-toolbox--dragging')
-
-        # Remove dragging class from the body (this class is defined in
-        # ContentEdit it disabled content selection via CSS).
-        removeCSSClass(document.body, 'ce--dragging')
 
 module.exports = ToolbarUI

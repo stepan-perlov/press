@@ -1,5 +1,6 @@
 webpack = require("webpack")
 path = require("path")
+ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 baseConfig = ->
     output:
@@ -10,9 +11,15 @@ baseConfig = ->
             test: /\.css$/
             loader: "style!css"
         ,
+            test: /\.scss$/
+            loader: ExtractTextPlugin.extract("style", "css!sass")
+        ,
             test: /\.coffee$/
             loader: "coffee-loader"
         ]
+    plugins: [
+        new ExtractTextPlugin("[name].css")
+    ]
     resolve:
         extensions: ["", ".js", ".coffee"]
 

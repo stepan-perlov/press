@@ -7,7 +7,7 @@ class Remove extends ToolbarTool
     constructor: (@editor, @tools)->
         @requiresElement = true
         @label = 'Remove'
-        @icon = 'remove'
+        @icon = 'delete_forever'
 
     canApply: (element, selection) ->
         # Return true if the tool can be applied to the current
