@@ -53,9 +53,10 @@ class Editor extends View
     )->
         super()
 
+        @_root = domElement.parentNode
         @_domElement = domElement
         @_regionsQuery = regionsQuery
-        @_domRegions = document.querySelectorAll(regionsQuery)
+        @_domRegions = @_root.querySelectorAll(regionsQuery)
         @_regionNameAttribute = regionNameAttribute
 
         @root = new Root()
@@ -109,6 +110,8 @@ class Editor extends View
 
         @history.stopWatching()
         @history = null
+
+        @_toolbox.unmount()
 
     highlightRegions: (highlight) ->
         # Highlight (or stop highlighting) editiable regions within the page
@@ -289,6 +292,42 @@ class Editor extends View
             # Update the inspector tags
             #@_inspector.updateTags()
 
+    save: ->
+        # Build a map of the modified regions
+        modifiedRegions = {}
+        for name, region of @_regions
+            # Check for regions that contain only a place holder
+            html = region.html()
+            if region.children.length == 1
+                child = region.children[0]
+                if child.content and not child.content.html()
+                    html = ''
+
+            # Apply the changes made to the DOM (affectively resetting the DOM
+            # to a non-editable state).
+            # Unmount all children
+            for child in region.children
+                child.unmount()
+
+            region.domElement().innerHTML = html
+
+            # Check the region has been modified, if not we don't include it in
+            # the output.
+            if region.lastModified() == @_regionsLastModified[name]
+                continue
+
+            modifiedRegions[name] = html
+
+            # Set the region back to not modified
+            @_regionsLastModified[name] = region.lastModified()
+
+        # Trigger the saved event with a region HTML map for the changed
+        # content.
+        @dispatchEvent(
+            @createEvent('saved', modifiedRegions)
+        )
+        return modifiedRegions
+
     syncRegions: (regionQuery) ->
         # Sync the editor with the page in order to map out the regions/fixtures
         # that can be edited.
@@ -296,7 +335,7 @@ class Editor extends View
         # If a region query has been provided then set it
 
         # Find the DOM elements that will be managed as regions/fixtures
-        @_domRegions = document.querySelectorAll(@_regionsQuery)
+        @_domRegions = @_root.querySelectorAll(@_regionsQuery)
         @_initRegions()
 
     #

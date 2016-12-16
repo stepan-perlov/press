@@ -240,7 +240,7 @@ class Text extends Element
         # https://github.com/GetmeUK/ContentTools/issues/118
         #
         # Anthony Blackshaw <ant@getme.co.uk>, 2016-01-30
-        if @content.length() == 0 and @_factory.root.focused() is this
+        if @content.length() == 0 and @root.focused() is this
             ev.preventDefault()
             if document.activeElement != this._domElement
                 this._domElement.focus()
